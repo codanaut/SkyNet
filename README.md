@@ -8,7 +8,7 @@ Welcome to SkyNet, a tool for exploring aircraft information. The site at [skyne
 - **Aircraft Lookup**: Search for aircraft using N-number, Mode S Hex, or registration number.
 
 ### Firefox Extension
-- **Tar1090 Integration**: The Firefox extension (Chrome/Edge support in progress) integrates with sites running tar1090 or similar URLs ending with `/ ?icao="hex"`. It allows you to open the currently selected aircraft from a flight tracker directly in SkyNet, automatically displaying the relevant data.
+- **Tar1090 Integration**: The Firefox extension (Chrome/Edge support in progress) integrates with sites running tar1090 or similar URLs ending with `/?icao="hex"`. It allows you to open the currently selected aircraft from a flight tracker directly in SkyNet, automatically displaying the relevant data.
 - **Search Feature**: The extension also has a search function, letting you search by tail number, hex code, or registration directly from the extension. It will open a new tab with the data for that aircraft.
 - **Temporary Installation**: Currently, add via the debugging menu, with plans for listing in official extension stores.
 

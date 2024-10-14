@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "SkyNet: Aircraft Lookup",
+    "description": "Quickly lookup aircraft info.",
+    "version": "1.0",
+    "homepage_url": "https://skynet.codanaut.com",
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "permissions": ["activeTab", "tabs"],
+    "browser_action": {
+      "default_popup": "aircraft-search.html",
+      "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+      }
+    }
+  }
+  
