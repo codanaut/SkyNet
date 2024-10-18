@@ -1,0 +1,7 @@
+beautifulsoup4==4.12.3
+fastapi==0.111.0
+Requests==2.32.3
+SQLAlchemy==2.0.30
+psycopg2==2.9.9
+uvicorn==0.30.0
+gunicorn==22.0.0

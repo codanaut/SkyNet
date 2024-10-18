@@ -1,0 +1,32 @@
+#aircraftInfo-disabled {
+    width: 80%;             /* Set the width to 80% of its container */
+    margin: 20px auto;      /* Vertical margin of 20px, horizontal auto centers the div */
+    display: block;         /* Ensures the div is a block-level element */
+    padding: 20px;          /* Adds padding inside the div */
+    background-color: white; /* Light grey background color */
+    border-radius: 10px;    /* Rounded corners for the div */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds a subtle shadow to the div */
+}
+
+body-disabled {
+    text-align: center;
+}
+
+
+.plane-icon {
+    width: 100px; /* Adjust size based on your preference */
+    animation: fly 2s ease-in-out infinite;
+}
+
+.plane-icon-small {
+    width: 25px; /* Adjust size based on your preference */
+    animation: fly 2s ease-in-out infinite;
+}
+
+/* Define the flying effect */
+@keyframes fly {
+    0% { transform: translateX(-10); }      /* Starting point */
+    50% { transform: translateX(20px); }  /* Move slightly to the right */
+    100% { transform: translateX(0); }    /* Back to original position */
+}
+

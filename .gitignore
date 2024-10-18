@@ -1,0 +1,6 @@
+
+web-app/modules/__pycache__/
+
+web-app/routes/__pycache__/
+
+*.pyc
