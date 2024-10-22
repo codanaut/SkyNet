@@ -15,7 +15,7 @@ document.getElementById("parse-url").addEventListener("click", function () {
     }
 
     if (icao) {
-      const newUrl = `https://skynet.codanaut.com/?icao=${icao}`;
+      const newUrl = `https://skynetdb.com/?icao=${icao}`;
       chrome.tabs.create({ url: newUrl });
     } else {
       alert("No ICAO code or flight identifier found in the current URL.");
@@ -26,7 +26,7 @@ document.getElementById("parse-url").addEventListener("click", function () {
 document.getElementById("open-url").addEventListener("click", function () {
   const icao = document.getElementById("icao-input").value;
   if (icao) {
-    const newUrl = `https://skynet.codanaut.com/?icao=${icao}`;
+    const newUrl = `https://skynetdb.com/?icao=${icao}`;
     chrome.tabs.create({ url: newUrl });
   } else {
     alert("Please enter an ICAO code.");
