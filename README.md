@@ -1,6 +1,6 @@
-# SkyNet
+# SkyNetDB
 
-Welcome to SkyNet, a tool for exploring aircraft information. The site at [skynet.codanaut.com](http://skynet.codanaut.com) lets users search for aircraft details by N-number, Mode S Hex code, or registration number. We're continuously adding new features to improve the experience.
+Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [skynet.codanaut.com](http://skynet.codanaut.com) lets users search for aircraft details by N-number, Mode S Hex code, or registration number. We're continuously adding new features to improve the experience.
 
 ## Current Features
 
