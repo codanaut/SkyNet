@@ -1,6 +1,6 @@
 # SkyNetDB
 
-Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [skynet.codanaut.com](http://skynet.codanaut.com) lets users search for aircraft details by N-number, Mode S Hex code, or registration number. We're continuously adding new features to improve the experience.
+Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [skynetdb.com](http://skynetdb.com) lets users search for aircraft details by N-number, Mode S Hex code, or registration number. We're continuously adding new features to improve the experience.
 
 ## Current Features
 
@@ -22,7 +22,7 @@ Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [sky
 
 ### API Integration
 
-- **REST API**: SkyNet provides a public API that can be used to retrieve aircraft information programmatically. The API allows lookup by N-number, hex code, and other identifiers. Documentation is available at [skynet.codanaut.com/docs](http://skynet.codanaut.com/docs).
+- **REST API**: SkyNetDB provides a public API that can be used to retrieve aircraft information programmatically. The API allows lookup by N-number, hex code, and other identifiers. Documentation is available at [skynetdb.com/docs](http://skynetdb.com/docs).
 - **Rate Limiting**: API access is rate-limited to ensure fair usage and reliability for all users. Please refer to the documentation for specific rate limits and access guidelines.
 
 ### ChatGPT - SkyNet GPT
@@ -42,7 +42,7 @@ Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [sky
 
 ### SkyNet Database
 
-SkyNet is built with **Python**, **FastAPI**, and uses **PostgreSQL** for data storage. API documentation is available at [skynet.codanaut.com/docs](http://skynet.codanaut.com/docs).
+SkyNetDB is built with **Python**, **FastAPI**, and uses **PostgreSQL** for data storage. API documentation is available at [skynetdb.com/docs](http://skynetdb.com/docs).
 
 Deployment will be provided via **Docker Compose** to include everything needed for a full setup.
 
@@ -56,11 +56,11 @@ To install and run the Firefox extension temporarily:
 
 This will load the extension temporarily, and it will remain active until you restart Firefox. Permanent installation options will be available once the extension is listed in the official extension stores.
 
-### Running the SkyNet Database
+### Running the SkyNetDB Database
 
 The main SkyNet web app relies on the SkyNet database. To set up the SkyNet database, follow the steps below: (Coming soon)
 
-### Running the SkyNet Web App
+### Running the SkyNetDB Web App
 
 Note: For running on the Raspberry Pi 5, there is an ARM64 version available using the same image but with the `:pi` tag.
 
@@ -72,7 +72,7 @@ version: '3.8'
 
 services:
   skynet:
-    image: registry.gitlab.com/codanaut/skynet/skynet
+    image: registry.gitlab.com/codanaut/skynetdb/skynet
     container_name: skynet
     restart: always
     ports:
