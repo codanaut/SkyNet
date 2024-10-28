@@ -6,3 +6,5 @@ web-app/routes/__pycache__/
 *.pyc
 
 web-app/.env
+
+database/.env
