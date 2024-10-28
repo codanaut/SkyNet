@@ -12,3 +12,5 @@ database/.env
 data_sources/faa_data/.env
 
 *.db
+
+*.env
