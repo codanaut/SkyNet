@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, String, Integer, Float, Boolean, DateTime, Date, func
+from sqlalchemy import create_engine, Column, String, Integer, Float, Boolean, DateTime, Date, func, BIGINT
 from sqlalchemy.orm import declarative_base
 from datetime import datetime, timezone
 
@@ -99,7 +99,7 @@ class Aircraft(Base):
     spi = Column(Boolean)  # Special position identification (indicates an emergency or priority status).
     mlat = Column(String)  # Multilateration data (lists if position was derived from multilateration).
     tisb = Column(String)  # Traffic Information Service Broadcast (indicates if data comes from TIS-B).
-    messages = Column(Integer)  # Number of ADS-B messages received.
+    messages = Column(BIGINT)  # Number of ADS-B messages received.
     seen = Column(Float)  # Time since last update received.
     rssi = Column(Float)  # Received signal strength indicator.
     distance = Column(Float)  # Distance from the receiver (kilometers).
