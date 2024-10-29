@@ -27,3 +27,6 @@ NOTE: while this will create the DB for SkyNet it's suggested that you run `crea
 
 
 Optional: Run `seed-locations.py` to add a number of popular airports from around the world. 
+
+### Giving Back
+If you plan on using public APIs, consider contributing back by sharing data from your own receivers to support these services!

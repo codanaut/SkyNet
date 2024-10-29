@@ -1,4 +1,4 @@
-# SkyNetDB - FAA Data
+# SkyNet Data Sources - FAA Data
 
 FAA\_Data is a tool that fetches the latest FAA data dump, converts it to an SQLite3 database for processing, and uploads it to the main SkyNet database. It can also update existing data records efficiently.
 
