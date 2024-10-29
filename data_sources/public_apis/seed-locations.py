@@ -20,6 +20,7 @@ def seed_locations(engine):
     session = Session()
     try:
         locations = [
+            ("SNY Airport, Sidney, NE", 41.0995,-102.9827, 200),
             ("DEN Airport, Denver, CO", 39.8561, -104.6737, 100),
             ("DCA Airport, Washington D.C.", 38.8512, -77.0402, 25),
             ("JFK Airport, New York, NY", 40.6413, -73.7781, 50),

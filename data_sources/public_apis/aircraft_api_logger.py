@@ -260,14 +260,14 @@ def get_category_description(type_code):
     
     return aircraft_types.get(type_code, "Unknown aircraft type")
 
-def fetch_and_update(engine, url, location):
+def fetch_and_update(engine, url, location, worker_id):
     api_url = url
     try:
         response = requests.get(api_url)
         if response.status_code == 200:
             data = response.json()
         else:
-            print("Failed to fetch data: HTTP Status", response.status_code)
+            print(f"Worker {worker_id}: Failed to fetch data: {location} - HTTP Status", response.status_code)
             return None
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
@@ -442,13 +442,13 @@ def reset_stuck_locations(engine):
 def get_oldest_location(session, worker_id):
     try:
         # Define the threshold time of two minutes ago
-        two_minutes_ago = datetime.now(timezone.utc) - timedelta(minutes=2)
+        set_minutes_ago = datetime.now(timezone.utc) - timedelta(minutes=5)
 
         # Query to fetch the location that hasn't been updated recently and is not in progress
         location = (
             session.query(Location)
             .filter(
-                (Location.last_updated == None) | (Location.last_updated < two_minutes_ago),
+                (Location.last_updated == None) | (Location.last_updated < set_minutes_ago),
                 Location.in_progress == False
             )
             .order_by(Location.last_updated.nullsfirst())  # Order by last_updated to get the oldest one first, handle nulls
@@ -463,7 +463,7 @@ def get_oldest_location(session, worker_id):
             session.commit()  # Commit the changes to the database
             return location
         else:
-            print(f"Worker {worker_id}: No locations older than 2 minutes found, sleeping...")
+            print(f"Worker {worker_id}: All locations up to date, sleeping...")
             time.sleep(120)  # Sleep for 2 minutes if no suitable location is found
     except exc.SQLAlchemyError as e:
         session.rollback()
@@ -484,7 +484,7 @@ def update_location(engine, location, worker_id, api):
 
     try:
         # Fetch and update data using the provided URL
-        with_retries(engine, lambda engine: fetch_and_update(engine, url, location.name))
+        with_retries(engine, lambda engine: fetch_and_update(engine, url, location.name, worker_id))
         
         # Update the location's last_updated timestamp and mark it as not in progress
         Session = sessionmaker(bind=engine, expire_on_commit=False)
@@ -573,7 +573,7 @@ def main():
                 
                     
 
-                time.sleep(5)  # Slight delay to prevent hammering the database too hard
+                time.sleep(10)  # Slight delay to prevent hammering the database too hard
             except exc.SQLAlchemyError as e:
                 session.rollback()
                 print(f"Worker {worker_id}: Error during processing: {e}")
