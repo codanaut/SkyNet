@@ -36,7 +36,7 @@ async function fetchAircraftInfo() {
     document.getElementById("aircraftInfo").style.display = "none";
     document.getElementById("error").style.display = "none";
     // Show the loading spinner
-    document.getElementById("loadingSpinner").style.display = "flex";
+    showLoadingSpinner();
 
     var inputCode = document.getElementById("hexInput").value.trim();
     if (!inputCode) {
@@ -70,7 +70,7 @@ async function fetchAircraftInfo() {
         window.history.replaceState(null, '', '/');
     } finally {
         // Hide the loading spinner
-        document.getElementById("loadingSpinner").style.display = "none";
+        hideLoadingSpinner();
     }
     
 }
@@ -79,7 +79,8 @@ async function fetchAircraftInfo() {
 async function fetchRandomAircraft() {
     document.getElementById("aircraftInfo").style.display = "none";
     document.getElementById("error").style.display = "none";
-    document.getElementById("loadingSpinner").style.display = "flex";
+    //document.getElementById("loadingSpinner").style.display = "flex";
+    showLoadingSpinner();
 
     let apiUrl = `/api/random`;
     try {
@@ -95,7 +96,8 @@ async function fetchRandomAircraft() {
         console.error('Failed to fetch aircraft data:', error);
         alert(`Failed to fetch random aircraft`, error);
     }
-    document.getElementById("loadingSpinner").style.display = "none";
+    //document.getElementById("loadingSpinner").style.display = "none";
+    hideLoadingSpinner();
 }
 
 // Display the info
@@ -336,7 +338,7 @@ async function get_count(){
         const count = data.count.toLocaleString();
         // Update the DOM element with the ID 'count' to display the count
         document.getElementById("loadingSpinner-little").style.display = "none";
-        document.getElementById("count").textContent = count;
+        document.getElementById("count").textContent = count + " Aircraft Logged";
     })
     .catch(error => {
         // Handle any errors that occur during the fetch operation
@@ -402,3 +404,38 @@ function calculateDestination(lat, lon, distance, bearing) {
     };
 }
 
+// Spinner Stuff
+
+
+// Function to select a random message
+function getRandomLoadingMessage() {
+    return fetch('loadingmessages.json')
+        .then(response => response.json())
+        .then(data => {
+            const loadingMessages = data.loadingMessages;
+            const randomIndex = Math.floor(Math.random() * loadingMessages.length);
+            return loadingMessages[randomIndex];
+        })
+        .catch(() => "Loading... Please Wait"); // Fallback message if there's an error
+}
+
+
+// Update the loading message in the HTML
+function showLoadingSpinner() {
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    const spinnerMessageElement = document.getElementById("spinnermessage");
+    getRandomLoadingMessage().then(message => {
+        spinnerMessageElement.innerHTML = `${message}`;
+    });
+    loadingSpinner.classList.remove("hidden");
+    document.getElementById("spinner").style.display = "flex";
+    spinnerMessageElement.style.display = "block";
+}
+
+// Hide the loading spinner (when appropriate)
+function hideLoadingSpinner() {
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    document.getElementById("spinner").style.display = "none";
+    document.getElementById("spinnermessage").style.display = "none";
+    
+}

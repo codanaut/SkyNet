@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <title>Aircraft Information</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Add your CSS file for styling -->
+</head>
+<body class="text-center">
+    <h1 class="text-5xl pt-4 pb-6"><a href="/">SkyNetDB</a></h1>
+    <div>
+        <a href="/"><button id="" class="bg-blue-500/90 text-white rounded-full py-2 px-4">Home</button></a>
+        <!--<a href="/tools"><button id="" class="bg-blue-500/90 text-white rounded-full py-2 px-4">Tools</button></a>-->
+        <a href="/about"><button id="" class="bg-blue-500/90 text-white rounded-full py-2 px-4">About</button></a>
+    </div>
+    <div class="mt-4">
+        <a href="https://github.com/codanaut/skynetdb"><button id="" class="bg-blue-500/90 text-white rounded-full py-2 px-4">GitHub</button></a>
+        <a href="https://discord.gg/VeURJbwtEk"><button id="" class="bg-blue-500/90 text-white rounded-full py-2 px-4">Discord</button></a>
+        <a href="https://chatgpt.com/g/g-Yl0731HVv-skynet"><button id="" class="bg-blue-500/90 text-white rounded-full py-2 px-4">SkyNetGPT</button></a>
+    </div>
+
+    
+    <div class="container mx-auto px-4 max-w-prose ">
+        <div class="text-3xl my-4">About SkyNetDB</div>
+        <p class="text-base">SkyNetDB is an aviation data platform that lets you track, analyze, and share aircraft information. Whether you're an aviation enthusiast or just curious about the skies, SkyNetDB makes aircraft data easy to find and use.</p>
+        <p class="text-base mt-2">While using flight tracking sites, I quickly realized that I wanted to know more about particular aircraft I was tracking. So SkyNetDB was born. Using the extension, it's now quicker than ever to look up any selected aircraft from all the popular flight tracking sites.</p>
+        
+        <div class="text-3xl my-4">Why Use SkyNetDB?</div>
+        <p class="text-base">SkyNetDB offers a clean, easy-to-use webpage and progressive web app (PWA), designed to give you a seamless experience across all your devices. Our API provides access to all available aircraft data, making it a great tool for both hobbyists and developers. Plus, SkyNetDB is community-supported, using freely available information and giving back by sharing data freely with the community</p>
+        
+
+        <div class="text-3xl my-4">Get Involved</div>
+        <p class="text-base">SkyNetDB was built by aviation lovers, for aviation lovers. We’re always growing and love user feedback. Join us on Discord to share your ideas, connect with others, get help, and help shape the future of SkyNetDB.</p>
+        <p class="text-base mt-2">Want to contribute? Visit our GitHub or join our Discord to help grow SkyNetDB. Whether it’s data, features, or just your thoughts, we’d love to have you on board!</p>
+
+    </div>
+    
+    
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://rawgit.com/bbecquet/Leaflet.RotatedMarker/master/leaflet.rotatedMarker.js"></script>
+    <script src="js/getplaneinfo.js"></script>
+</body>
+</html>

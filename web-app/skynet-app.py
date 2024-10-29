@@ -34,21 +34,21 @@ async def root():
 
 #Webpages
 
-@app.get('/airplanes')
-async def index():
-    return FileResponse('webpage/test.html')
+@app.get('/tools')
+async def tools():
+    return FileResponse('./webpage/tools.html')
 
 
 # Webpages
-@app.get('/stats')
-async def index():
-    return FileResponse('webpage/stats.html')
+@app.get('/about')
+async def about():
+    return FileResponse('./webpage/about.html')
  
 app.mount('/',StaticFiles(directory='webpage', html=True), name='static')
 # add the mount mount last so that it's not overwriting anything else with being on / 
 @app.get('/')
 async def index():
-    return FileResponse('webpage/index.html')
+    return FileResponse('index.html')
  
 
 
