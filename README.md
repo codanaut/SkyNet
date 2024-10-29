@@ -119,13 +119,13 @@ SkyNetDB can be enriched with a variety of data sources available in the [data_s
 
 #### FAA Data
 
-Begin by incorporating public data from the FAA using the instructions and scripts in the [faa_data](./data_sources/faa_data/readme.md).
+Begin by incorporating public data from the FAA using the instructions and scripts in the [faa_data](./data_sources/faa_data/).
 
 #### Public APIs
 
 You can further populate SkyNetDB with data from public APIs offered by flight tracking services such as [adsb.fi](https://adsb.fi/) and [airplanes.live](https://airplanes.live/). These services provide extensive information on tracked flights.
 
-Refer to [Public_API's](./data_sources/public_apis/readme.md) for details on running `aircraft_api_logger.py` to log active flights.
+Refer to [Public_API's](./data_sources/public_apis/) for details on running `aircraft_api_logger.py` to log active flights.
 
 #### ADS-B Receiver Data
 
