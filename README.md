@@ -13,7 +13,8 @@ Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [sky
 
 - **Tar1090 Integration**: The Firefox extension (Chrome/Edge/Brave support in progress) integrates with sites running tar1090 or similar URLs ending with `/?icao="hex"`. It allows you to open the currently selected aircraft from a flight tracker directly in SkyNet, automatically displaying the relevant data.
 - **Search Feature**: The extension also has a search function, letting you search by tail number, hex code, or registration directly from the extension. It will open a new tab with the data for that aircraft.
-- **Temporary Installation**: Currently, you can add the extension via the debugging menu, with plans for listing in official extension stores.
+- **Install Now**: [SkynetDB Aircraft Lookup Extension](https://addons.mozilla.org/en-US/firefox/addon/skynetdb-aircraft-lookup/)
+
 
 ### Discord Bot
 
