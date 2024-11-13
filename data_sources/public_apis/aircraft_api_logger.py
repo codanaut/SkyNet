@@ -21,6 +21,7 @@ class Location(Base):
     range = Column(Integer, nullable=False)
     last_updated = Column(DateTime, nullable=True)
     in_progress = Column(Boolean, nullable=False, default=False)
+    working = Column(Boolean, nullable=True, default=None)
 
 class Aircraft(Base):
     __tablename__ = 'aircraft'
@@ -392,6 +393,9 @@ def fetch_and_update(engine, url, location, worker_id):
                 existing.last_updated = datetime.now().strftime('%m/%d/%Y %I:%M %p')
                 existing.timestamp = datetime.now(timezone.utc)
                 session.commit()
+
+                # Set `working` to True since everything succeeded so far
+                update_working_status(engine, location, True)
                 #print(f"Updated {hex_code}")
 
         except IntegrityError:
@@ -400,6 +404,27 @@ def fetch_and_update(engine, url, location, worker_id):
 
     session.close()
     #print(f"Update completed: {location} - {datetime.now().strftime('%I:%M %p')}")
+
+# Set Working Status. 
+def update_working_status(engine, location_name, status):
+    """
+    Update the working status of a location.
+    """
+    Session = sessionmaker(bind=engine, expire_on_commit=False)
+    session = Session()
+    try:
+        location = session.query(Location).filter_by(name=location_name).first()
+        if location:
+            location.working = status
+            session.commit()
+            #print(f"Updated working status for {location_name} to {status}")
+        else:
+            print(f"Location {location_name} not found when trying to update working status.")
+    except exc.SQLAlchemyError as e:
+        session.rollback()
+        print(f"Error updating working status: {e}")
+    finally:
+        session.close()
 
 def with_retries(engine, function, max_retries=5, backoff_factor=1):
     retries = 0
@@ -506,6 +531,7 @@ def update_location(engine, location, worker_id, api):
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred while updating {location.name}: {e}")
+        update_working_status(engine, location.name, False)
 
 # Login to PG
 # Check if required environment variables are already set
