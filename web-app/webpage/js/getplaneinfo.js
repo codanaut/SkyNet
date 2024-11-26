@@ -253,6 +253,49 @@ function displayAircraftInfo(data) {
         document.getElementById("img").style.display = "none"; // Hide the image element
     }
 
+    //route
+    if (data.flight) {
+        lookupRoute(data.flight)
+            .then(routeData => {
+                if (routeData && routeData._airports && routeData._airports.length > 0) {
+                    document.getElementById("flight").style.display = "block";
+                    const routeElement = document.getElementById("route");
+                    routeElement.style.display = "block"; // Show the route block
+    
+                    // Construct the route display dynamically
+                    let routeHTML = `<p>Route: ${routeData._airport_codes_iata || 'Unknown'}</p>`;
+                    routeHTML += `<p>Origin: ${routeData._airports[0].name || 'Unknown'} (${routeData._airports[0].iata || 'Unknown'})</p>`;
+    
+                    // Add stops if there are more than two airports
+                    if (routeData._airports.length > 2) {
+                        for (let i = 1; i < routeData._airports.length - 1; i++) {
+                            routeHTML += `<p>Layover: ${routeData._airports[i].name || 'Unknown'} (${routeData._airports[i].iata || 'Unknown'})</p>`;
+                        }
+                    }
+    
+                    // Add the destination
+                    const lastAirport = routeData._airports[routeData._airports.length - 1];
+                    routeHTML += `<p>Destination: ${lastAirport.name || 'Unknown'} (${lastAirport.iata || 'Unknown'})</p>`;
+    
+                    // Update the route element
+                    routeElement.innerHTML = routeHTML;
+                } else {
+                    // Hide the route block if no data is found
+                    document.getElementById("route").style.display = "none";
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching route data:", error);
+                // Hide the route block on error
+                document.getElementById("route").style.display = "none";
+            });
+    } else {
+        // Hide the route block if no flight information is available
+        document.getElementById("route").style.display = "none";
+    }
+    
+    
+
     //Display the data again
     document.getElementById("aircraftInfo").style.display = "block";
        
@@ -438,4 +481,39 @@ function hideLoadingSpinner() {
     document.getElementById("spinner").style.display = "none";
     document.getElementById("spinnermessage").style.display = "none";
     
+}
+
+async function lookupRoute(callsign) {
+    if (!callsign || typeof callsign !== "string") {
+        console.error("Invalid callsign provided.");
+        return null;
+    }
+
+    // Extract the first two characters of the callsign
+    const prefix = callsign.substring(0, 2);
+
+    // Construct the URL
+    const url = `https://vrs-standing-data.adsb.lol/routes/${prefix}/${callsign}.json`;
+
+    try {
+        // Fetch the data from the URL
+        const response = await fetch(url);
+
+        // Check if the response is ok (status 200)
+        if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            return data;
+        } else if (response.status === 404) {
+            // Return null if the resource is not found
+            console.warn(`Route not found for callsign: ${callsign}`);
+            return null;
+        } else {
+            console.error(`Failed to fetch route: ${response.status}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`Error fetching route for callsign ${callsign}:`, error);
+        return null;
+    }
 }
