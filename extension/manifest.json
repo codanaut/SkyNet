@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
-    "name": "SkyNet: Aircraft Lookup",
+    "name": "SkyNetDB: Aircraft Lookup",
     "description": "Quickly lookup aircraft info.",
-    "version": "1.0",
+    "version": "1.1",
     "homepage_url": "https://skynetdb.com",
     "icons": {
         "16": "icon.png",

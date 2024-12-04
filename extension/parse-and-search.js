@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const input = document.getElementById("icao-input");
+  if (input) {
+    input.focus(); // Automatically select the input box
+  }
+});
+
 document.getElementById("parse-url").addEventListener("click", function () {
   // Get the current tab URL
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -16,7 +23,9 @@ document.getElementById("parse-url").addEventListener("click", function () {
 
     if (icao) {
       const newUrl = `https://skynetdb.com/?icao=${icao}`;
-      chrome.tabs.create({ url: newUrl });
+      chrome.tabs.create({ url: newUrl }, function () {
+        window.close(); // Close the extension popup window
+      });
     } else {
       alert("No ICAO code or flight identifier found in the current URL.");
     }
@@ -27,9 +36,19 @@ document.getElementById("open-url").addEventListener("click", function () {
   const icao = document.getElementById("icao-input").value;
   if (icao) {
     const newUrl = `https://skynetdb.com/?icao=${icao}`;
-    chrome.tabs.create({ url: newUrl });
+    chrome.tabs.create({ url: newUrl }, function () {
+      window.close(); // Close the extension popup window
+    });
+    
   } else {
     alert("Please enter an ICAO code.");
+  }
+});
+
+// Trigger search button when pressing Enter in the input field
+document.getElementById("icao-input").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    document.getElementById("open-url").click();
   }
 });
 
