@@ -13,6 +13,7 @@ body-disabled {
 }
 
 
+
 .plane-icon {
     width: 100px; /* Adjust size based on your preference */
     animation: fly 2s ease-in-out infinite;

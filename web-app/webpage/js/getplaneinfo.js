@@ -470,6 +470,7 @@ function showLoadingSpinner() {
     getRandomLoadingMessage().then(message => {
         spinnerMessageElement.innerHTML = `${message}`;
     });
+    document.getElementById("details").style.display = "block";
     loadingSpinner.classList.remove("hidden");
     document.getElementById("spinner").style.display = "flex";
     spinnerMessageElement.style.display = "block";
