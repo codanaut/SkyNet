@@ -20,7 +20,7 @@ body-disabled {
 }
 
 .plane-icon-small {
-    width: 25px; /* Adjust size based on your preference */
+    width:70px; /* Adjust size based on your preference */
     animation: fly 2s ease-in-out infinite;
 }
 
