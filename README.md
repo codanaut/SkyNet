@@ -7,6 +7,7 @@ Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [sky
 ### Webpage
 
 - **Aircraft Lookup**: Search for aircraft using N-number, Mode S Hex, or registration number.
+- **Tools**: Includes a speed converter, temperature converter, and pressure converter, with more tools on the way.
 - **Mobile Friendly and PWA Support**: The webpage is optimized for mobile devices and functions as a Progressive Web App (PWA) for easy access on all devices.
 
 ### Firefox Extension
@@ -45,16 +46,6 @@ Welcome to SkyNetDB, a tool for exploring aircraft information. The site at [sky
 SkyNetDB is built with **Python**, **FastAPI**, and uses **PostgreSQL** for data storage. API documentation is available at [skynetdb.com/docs](http://skynetdb.com/docs).
 
 Deployment will be provided via **Docker Compose** to include everything needed for a full setup.
-
-### Running the Firefox Extension
-
-To install and run the Firefox extension temporarily:
-
-1. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
-2. Select **Load Temporary Add-on**.
-3. Navigate to the extensions folder and select the `manifest.json` file.
-
-This will load the extension temporarily, and it will remain active until you restart Firefox. Permanent installation options will be available once the extension is listed in the official extension stores.
 
 ---
 
@@ -163,6 +154,35 @@ services:
 ```
 
 Replace `your_db_password` with the appropriate database password. This configuration will create a container named `skynet_webapp`, exposing port `5002` on your local machine. Ensure that the database credentials are correct for the SkyNet web app to connect successfully.
+
+---
+
+### Running the Firefox Extension
+
+The SkynetDB Aircraft Lookup Extension is now available on the Firefox Add-ons store! You can install it directly from the link below:
+
+[SkynetDB Aircraft Lookup Extension](https://addons.mozilla.org/en-US/firefox/addon/skynetdb-aircraft-lookup/)
+
+If you are self-hosting SkynetDB and want to use the extension with your own instance:
+
+1. Clone the repository or download the source files.
+2. Open the `parse-and-search.js` file inside the `extension` folder.
+   - Locate the following line:
+     ```javascript
+     const newUrl = `https://skynetdb.com/?icao=${icao}`;
+     ```
+   - Replace `https://skynetdb.com` with the URL of your self-hosted SkynetDB instance (e.g., `http://yourdomain.com`), so it looks like:
+     ```javascript
+     const newUrl = `http://yourdomain.com/?icao=${icao}`;
+     ```
+3. Save the changes to the file.
+4. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
+5. Select **Load Temporary Add-on**.
+6. Navigate to the `extensions` folder in the repository and select the `manifest.json` file.
+
+This will load the extension temporarily and redirect lookups to your self-hosted instance. Note that the temporary installation will only remain active until you restart Firefox.
+
+For a permanent setup with a self-hosted instance, you can modify the source as needed and package it as a custom extension for use in your environment.
 
 ---
 
